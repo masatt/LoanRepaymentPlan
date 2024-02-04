@@ -18,9 +18,16 @@ function calculateAge(birthdate, currentDate) {
   return Math.round(ageWithMonths * 10) / 10;
 }
 
+function make_sheet() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  //初期設定
+  headers_for_input = [["ローン金額",	"年利率",	"月々の返済額",	"開始年",	"開始月",	"生年月日"]];
+  sheet.getRange("A1:F1").setValues(headers_for_input);
+}
+
 function calculateLoanRepaymentWithAge(loanAmount, annualInterestRate, monthlyRepayment, startYear, startMonth, birthdate) {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-
+ 
   // A4行目以降をクリアする
   var lastRow = sheet.getLastRow();
   if (lastRow >= 4) {
